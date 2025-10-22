@@ -1,6 +1,3 @@
-import kotlin.io.path.Path
-import kotlin.io.path.readText
-
 fun main() {
     fun mySolution(input: List<Int>): MutableList<Int> {
         val frequencies: MutableMap<Int, Int> = mutableMapOf()
