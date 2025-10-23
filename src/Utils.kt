@@ -1,3 +1,4 @@
+import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.readText
 
@@ -15,3 +16,5 @@ fun readLongNumberAsList(filename: String): List<Int> = Path("src/$filename.txt"
     .readText()
     .trim()
     .map { it.digitToInt() }
+
+fun pathToInput(filename: String): Path = Path("src/$filename.txt")
