@@ -9,23 +9,22 @@ fun main() {
         val result = mutableListOf<Int>()
 
         repeat(4) {
-            var maxVal = Int.MIN_VALUE
-            var maxKey = -1
-            frequencies.forEach { (key, value) ->
-                if (value > maxVal) {
-                    maxVal = value
-                    maxKey = key
+            var maxFreq = Int.MIN_VALUE
+            var digitWithMaxFreq = -1
+            frequencies.forEach { (digit, freq) ->
+                if (freq > maxFreq) {
+                    maxFreq = freq
+                    digitWithMaxFreq = digit
                 }
             }
-            result.add(maxKey)
-            frequencies.remove(maxKey)
+            result.add(digitWithMaxFreq)
+            frequencies.remove(digitWithMaxFreq)
         }
 
         return result
     }
 
-    // Read the input from the `src/Day01.txt` file.
-    val input = readLongNumberAsList()
+    val input = readLongNumberAsList("Challenge01")
 
     mySolution(input).println()
 }

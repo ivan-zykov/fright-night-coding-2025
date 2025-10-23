@@ -20,7 +20,7 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  */
 fun Any?.println() = println(this)
 
-fun readLongNumberAsList(): List<Int> = Path("src/Challenge01.txt")
+fun readLongNumberAsList(filename: String): List<Int> = Path("src/$filename.txt")
     .readText()
     .trim()
     .map { it.digitToInt() }
