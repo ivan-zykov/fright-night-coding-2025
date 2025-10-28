@@ -5,8 +5,9 @@ fun main() {
         var restNumber = input
         var overflowsCount = 0
 
-        while (restNumber > UInt.MAX_VALUE.toLong() + 1) {
-            restNumber -= UInt.MAX_VALUE.toLong() + 1
+        val modulus = UInt.MAX_VALUE.toLong() + 1L
+        while (restNumber > modulus) {
+            restNumber -= modulus
             overflowsCount++
         }
 
