@@ -18,11 +18,11 @@ fun main() {
         checkNotNull(uniqueSet) { "Error. No unique set found" }
 
         val result = input.find { name ->
-            uniqueSet.all { char ->
-                name.contains(char)
+            name.all { char ->
+                uniqueSet.contains(char)
             }
         }
-        checkNotNull(result) { "Error. Failed to find name with uniques set."}
+        checkNotNull(result) { "Error. Failed to find a name with uniques set." }
 
         return result
     }
