@@ -11,46 +11,44 @@ fun main() {
 
         val instructions = input.map { line ->
             line.split(',')
-                .map { it.trim() }
                 .map { direction ->
                     direction.toDirectionWithDeltas()
                 }
         }
 
-        instructions.println()
-
-        fun areCoordinatesNotOutOfBounds(
+        fun areCoordinatesInBounds(
             newI: Int,
             newJ: Int
         ) = newI in keyPad.indices && newJ in keyPad.first().indices
 
         return buildString {
             instructions.forEach { instruction ->
-                val currentCoordinate = Coordinate(0, 0)
+                val currentPosition = Position(0, 0)
                 instruction.forEach { direction ->
-                    val newI = currentCoordinate.i + direction.iDelta
-                    val newJ = currentCoordinate.j + direction.jDelta
-                    if (areCoordinatesNotOutOfBounds(newI, newJ)) {
-                        currentCoordinate.i = newI
-                        currentCoordinate.j = newJ
+                    val newI = currentPosition.i + direction.iDelta
+                    val newJ = currentPosition.j + direction.jDelta
+                    if (areCoordinatesInBounds(newI, newJ)) {
+                        currentPosition.i = newI
+                        currentPosition.j = newJ
                     }
                 }
-                append(keyPad[currentCoordinate.i][currentCoordinate.j])
+                append(keyPad[currentPosition.i][currentPosition.j])
             }
         }
     }
 
-    val input = pathToInput("Challenge04")
-        .readLines()
-
     val inputTest = pathToInput("Challenge04Test")
         .readLines()
-
     check("C" == mySolution(inputTest))
-    mySolution(input).println() // wrong: KLCOMDGNNAAKBGGGCLEPHIBMOHBFJDGBBFADNMADABKDAFBMDPJEONAOHCIPGDIP
+
+    val input = pathToInput("Challenge04")
+        .readLines()
+    val result = mySolution(input)
+    check("EBENKEMBFGDIKIGICIPEDLKGMEBBCFKODHPFJJLBADHBFPBGIBHLOGABIFNKAIJAA" == result)
+    result.println()
 }
 
-class Coordinate(
+class Position(
     var i: Int,
     var j: Int
 )
@@ -67,10 +65,9 @@ enum class DirectionWithDeltas(
 
 private fun String.toDirectionWithDeltas(): DirectionWithDeltas {
     return when (this) {
-        "UP" -> DirectionWithDeltas.UP
         "DOWN" -> DirectionWithDeltas.DOWN
         "LEFT" -> DirectionWithDeltas.LEFT
         "RIGHT" -> DirectionWithDeltas.RIGHT
-        else -> throw RuntimeException("Error! Direction $this could not be parsed.")
+        else -> DirectionWithDeltas.UP
     }
 }
