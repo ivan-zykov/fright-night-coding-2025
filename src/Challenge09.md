@@ -13,3 +13,7 @@ Trying not to pay attention to chilling screams and the sounds of an epic battle
 In this task, you will receive a map of the mansion as a dataset. # represents walls, . represents walkable floor, P represents your starting point and G represents the garage. Your answer should be the shortest path in a format like the following: UDLRRLDU, where U is moving Up, D is moving Down, L is moving Left and R is moving Right.
 
 Some layouts may have multiple shortest paths, any of them should be accepted.
+
+## Link
+
+https://hyperskill.org/learn/daily/53143
